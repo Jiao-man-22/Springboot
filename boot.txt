@@ -1,0 +1,6 @@
+配置文件的存放位置
+当前项目根目录
+/config子目录下
+项目resources 即classpath根目录中
+resources/cogfig
+ 
