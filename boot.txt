@@ -3,4 +3,8 @@
 /config子目录下
 项目resources 即classpath根目录中
 resources/cogfig
- 
+===============================================
+boot整合 web组件 （servlet filter listener ...）
+方法一：在组件类上添加  注解 @WebServlet .@WebFilter 等 
+方法二：写好组件类 再到配置类中注册组件 @Congfiguration 使用xxxRegsiterConfigurationBean 对象+@Bean 将组件类注册到容器中
+最后在启动类 添加注解中 @ServletComponentScan
