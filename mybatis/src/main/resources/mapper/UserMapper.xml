@@ -1,0 +1,12 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射java的接口-->
+<mapper namespace="mapper.UserMapper">
+    <!--插入admin用户-->
+    <insert id="addUser" parameterType="pojo.User" useGeneratedKeys="true" keyProperty="id" >
+        insert into users (name,sex,age) value (#{name},#{sex},#{age})
+    </insert>
+
+
+</mapper>

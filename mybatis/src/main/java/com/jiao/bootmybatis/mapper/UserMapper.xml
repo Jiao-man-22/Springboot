@@ -1,0 +1,51 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射java的接口-->
+<mapper namespace="com.jiao.bootmybatis.mapper.UserMapper">
+    <!--配置表字段和实体类属性的对应关系-->
+    <resultMap id="userMap" type="com.jiao.bootmybatis.pojo.User">
+    <id column="id" property="id"></id>
+    <result column="name" property="name"></result>
+    <result column="sex" property="sex"></result>
+    <result column="age" property="age"></result>
+    </resultMap>
+    <!--插入admin用户-->
+    <insert id="addUser" parameterType="com.jiao.bootmybatis.pojo.User" useGeneratedKeys="true" keyProperty="id" >
+        insert into users (name,sex,age) value (#{name},#{sex},#{age})
+    </insert>
+    <delete id="deleteUser" parameterType="com.jiao.bootmybatis.pojo.User">
+        delete  from users where id=#{id}
+    </delete>
+    <!--查询一个用户-->
+    <select id="findOne" resultMap="userMap">
+    select  *from users where id=#{id}
+    </select>
+    <!--查询所有用户-->
+    <!--配置结果集映射-->
+    <select id="findUserAll" resultMap="userMap">
+        select * from users
+    </select>
+    <!--更新语句-->
+    <update id="updateUser" parameterType="com.jiao.bootmybatis.pojo.User">
+        update users
+        <include refid="updateSet"></include>
+        <include refid="updateWhere"></include>
+    </update>
+    <!--动态sql-->
+    <sql id="updateSet">
+        <set>
+            <if test="name !=null">name = #{name},</if>
+            <if test="age !=null">age = #{age},</if>
+            <if test="sex !=null">sex = #{sex},</if>
+        </set>
+    </sql>
+    <sql id="updateWhere">
+    <where>
+        <if test="id !=null"> and id = #{id}</if>
+    </where>
+    </sql>
+
+
+
+</mapper>
